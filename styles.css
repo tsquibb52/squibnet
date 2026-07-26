@@ -657,8 +657,7 @@ svg {
 }
 
 .quote-container {
-  width: 100%;
-  max-width: 900px;
+  max-width: var(--container);
   margin: 0 auto;
 }
 
