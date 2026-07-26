@@ -107,10 +107,17 @@ svg {
 }
 
 .brand {
+  display: inline-flex;
+  align-items: center;
   color: white;
   font-size: 21px;
   font-weight: 700;
   letter-spacing: -0.5px;
+  line-height: 1;
+}
+
+.site-header .brand {
+  font-size: 24px;
 }
 
 .brand span span {
@@ -124,6 +131,7 @@ svg {
   color: white;
   font-size: 14px;
   font-weight: 700;
+  line-height: 1;
 }
 
 .site-nav > a:not(.button) {
@@ -183,7 +191,10 @@ svg {
   cursor: pointer;
   font-size: 14px;
   font-weight: 700;
+  line-height: 1;
   white-space: nowrap;
+  appearance: none;
+  -webkit-appearance: none;
   transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
 }
 
@@ -868,29 +879,38 @@ svg {
     display: grid;
     padding: 22px 24px 28px;
     gap: 0;
-    transform: translateY(-130%);
+    clip-path: inset(0 0 100% 0);
+    opacity: 0;
+    pointer-events: none;
+    transform-origin: top;
     visibility: hidden;
     background: var(--background);
     border-bottom: 1px solid var(--border);
-    transition: transform 200ms ease, visibility 200ms ease;
+    transition: clip-path 220ms ease, opacity 160ms ease, visibility 220ms ease;
   }
 
   .site-nav.open {
-    transform: translateY(0);
+    clip-path: inset(0);
+    opacity: 1;
+    pointer-events: auto;
     visibility: visible;
   }
 
   .site-nav > a:not(.button) {
-    padding: 15px 0;
-    border-bottom: 1px solid var(--border);
+    display: flex;
+    min-height: 50px;
+    padding: 0;
+    align-items: center;
+    line-height: 1;
   }
 
   .site-nav > a:not(.button)::after {
-    bottom: 0;
+    display: none;
   }
 
   .site-nav .button {
     margin-top: 18px;
+    line-height: 1;
   }
 
   .steps,
@@ -942,6 +962,12 @@ svg {
 
   .site-header {
     height: 68px;
+  }
+
+  .site-header .brand {
+    height: 100%;
+    align-items: center;
+    line-height: 1;
   }
 
   .site-nav {
