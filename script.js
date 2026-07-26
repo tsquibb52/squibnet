@@ -100,7 +100,7 @@ if ("IntersectionObserver" in window) {
 const quoteForm = document.getElementById("quote-form");
 const formStatus = quoteForm?.querySelector(".form-status");
 
-quoteForm?.addEventListener("submit", (event) => {
+quoteForm?.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   if (!quoteForm.checkValidity()) {
@@ -108,38 +108,35 @@ quoteForm?.addEventListener("submit", (event) => {
     return;
   }
 
-  const data = new FormData(quoteForm);
-  const fields = {
-    name: data.get("name"),
-    company: data.get("company") || "Not provided",
-    email: data.get("email"),
-    phone: data.get("phone") || "Not provided",
-    category: data.get("category"),
-    timeline: data.get("timeline"),
-    budget: data.get("budget"),
-    details: data.get("details"),
-  };
+  const submitButton = quoteForm.querySelector(".form-submit");
+  const originalButtonContent = submitButton.innerHTML;
 
-  const subject = `New SquibNET sourcing request — ${fields.category}`;
-  const body = [
-    "NEW SOURCING REQUEST",
-    "",
-    `Name: ${fields.name}`,
-    `Company: ${fields.company}`,
-    `Email: ${fields.email}`,
-    `Phone: ${fields.phone}`,
-    "",
-    `Category: ${fields.category}`,
-    `Ideal timeline: ${fields.timeline}`,
-    `Estimated budget: ${fields.budget}`,
-    "",
-    "PROJECT DETAILS",
-    fields.details,
-  ].join("\n");
+  submitButton.disabled = true;
+  submitButton.textContent = "Sending...";
+  formStatus.classList.remove("show", "error");
 
-  formStatus.textContent =
-    "Your request is ready. Your email app will open with the details filled in—send that message to complete your request.";
-  formStatus.classList.add("show");
+  try {
+    const response = await fetch(quoteForm.action, {
+      method: "POST",
+      body: new FormData(quoteForm),
+      headers: {
+        Accept: "application/json",
+      },
+    });
 
-  window.location.href = `mailto:tyler@squibnet.ca?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    if (!response.ok) {
+      throw new Error("Formspree could not accept the request.");
+    }
+
+    quoteForm.reset();
+    formStatus.textContent = "Thank you. Your request has been sent to SquibNET.";
+    formStatus.classList.add("show");
+  } catch {
+    formStatus.textContent =
+      "Your request could not be sent. Please try again or contact us directly.";
+    formStatus.classList.add("show", "error");
+  } finally {
+    submitButton.disabled = false;
+    submitButton.innerHTML = originalButtonContent;
+  }
 });
