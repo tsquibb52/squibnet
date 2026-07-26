@@ -152,10 +152,6 @@ svg {
   transition: transform 180ms ease;
 }
 
-.site-nav > a:not(.button):hover::after {
-  transform: scaleX(1);
-}
-
 .menu-button {
   display: none;
   width: 42px;
@@ -196,12 +192,6 @@ svg {
   appearance: none;
   -webkit-appearance: none;
   transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
-}
-
-.button:hover {
-  transform: translateY(-2px);
-  background: #2568d9;
-  border-color: #2568d9;
 }
 
 .button svg {
@@ -253,13 +243,6 @@ svg {
   color: var(--text);
   background: transparent;
   border-color: var(--silver-border);
-}
-
-.quote-button:hover {
-  color: #030b14;
-  background: var(--blue-light);
-  border-color: var(--blue-light);
-  transform: none;
 }
 
 /* Shared section styles */
@@ -653,7 +636,6 @@ svg {
   transition: color 160ms ease;
 }
 
-.contact-action:hover,
 .contact-action.copied {
   color: var(--text);
 }
@@ -852,15 +834,46 @@ svg {
   transition-delay: 240ms;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .site-nav > a:not(.button):hover::after {
+    transform: scaleX(1);
+  }
+
+  .button:hover {
+    transform: translateY(-2px);
+    background: #2568d9;
+    border-color: #2568d9;
+  }
+
+  .quote-button:hover {
+    color: #030b14;
+    background: var(--blue-light);
+    border-color: var(--blue-light);
+    transform: none;
+  }
+
+  .contact-action:hover {
+    color: var(--text);
+  }
+}
+
 /* Responsive */
 
 @media (max-width: 900px) {
   .menu-button {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .menu-button span:not(.sr-only) {
+    margin: 0;
   }
 
   .menu-button[aria-expanded="true"] span:nth-child(2) {
-    transform: translateY(7px) rotate(45deg);
+    transform: translateY(8px) rotate(45deg);
   }
 
   .menu-button[aria-expanded="true"] span:nth-child(3) {
@@ -868,7 +881,7 @@ svg {
   }
 
   .menu-button[aria-expanded="true"] span:nth-child(4) {
-    transform: translateY(-7px) rotate(-45deg);
+    transform: translateY(-8px) rotate(-45deg);
   }
 
   .site-nav {
@@ -970,6 +983,13 @@ svg {
     line-height: 1;
   }
 
+  .site-header .brand > span {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    line-height: 1;
+  }
+
   .site-nav {
     top: 68px;
   }
@@ -1057,6 +1077,19 @@ svg {
 
   .quote-form {
     padding: 24px 18px;
+  }
+
+  .quote-form input {
+    height: 48px;
+    padding: 0 14px;
+    font-size: 16px;
+    line-height: 1.2;
+  }
+
+  .quote-form textarea {
+    padding: 12px 14px;
+    font-size: 16px;
+    line-height: 1.5;
   }
 
   .form-grid {
