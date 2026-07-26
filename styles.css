@@ -719,6 +719,11 @@ svg {
   color: #708093;
 }
 
+.quote-form input:focus::placeholder,
+.quote-form textarea:focus::placeholder {
+  opacity: 0;
+}
+
 .full-width {
   grid-column: 1 / -1;
 }

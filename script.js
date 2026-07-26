@@ -53,6 +53,29 @@ document.querySelectorAll(".copy-button").forEach((button) => {
   });
 });
 
+const mobilePlaceholderQuery = window.matchMedia("(max-width: 600px)");
+const responsivePlaceholderFields = document.querySelectorAll("[data-mobile-placeholder]");
+
+responsivePlaceholderFields.forEach((field) => {
+  field.dataset.desktopPlaceholder = field.placeholder;
+});
+
+const updateResponsivePlaceholders = () => {
+  responsivePlaceholderFields.forEach((field) => {
+    field.placeholder = mobilePlaceholderQuery.matches
+      ? field.dataset.mobilePlaceholder
+      : field.dataset.desktopPlaceholder;
+  });
+};
+
+updateResponsivePlaceholders();
+
+if (mobilePlaceholderQuery.addEventListener) {
+  mobilePlaceholderQuery.addEventListener("change", updateResponsivePlaceholders);
+} else {
+  mobilePlaceholderQuery.addListener(updateResponsivePlaceholders);
+}
+
 document.getElementById("current-year").textContent = new Date().getFullYear();
 
 const revealItems = document.querySelectorAll(".reveal");
