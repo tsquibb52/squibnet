@@ -16,6 +16,43 @@ navigation?.querySelectorAll("a").forEach((link) => {
   });
 });
 
+document.querySelectorAll(".copy-button").forEach((button) => {
+  const originalLabel = button.getAttribute("aria-label");
+  const originalIcon = button.innerHTML;
+
+  button.addEventListener("click", async () => {
+    const value = button.dataset.copy;
+
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(value);
+      } else {
+        const textArea = document.createElement("textarea");
+        textArea.value = value;
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        textArea.remove();
+      }
+
+      button.setAttribute("aria-label", "Copied");
+      button.innerHTML =
+        '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="m4 10 4 4 8-9" /></svg>';
+      button.classList.add("copied");
+      window.setTimeout(() => {
+        button.setAttribute("aria-label", originalLabel);
+        button.innerHTML = originalIcon;
+        button.classList.remove("copied");
+      }, 1600);
+    } catch {
+      button.setAttribute("aria-label", "Copy failed. Try again.");
+      window.setTimeout(() => button.setAttribute("aria-label", originalLabel), 1600);
+    }
+  });
+});
+
 document.getElementById("current-year").textContent = new Date().getFullYear();
 
 const revealItems = document.querySelectorAll(".reveal");

@@ -12,12 +12,12 @@
     <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
   </head>
-  <body>
+  <body id="top">
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header" id="home">
       <div class="container nav-wrap">
-        <a class="brand" href="#home" aria-label="SquibNET home">
+        <a class="brand" href="#top" aria-label="SquibNET home">
           <span>Squib<span>NET</span></span>
         </a>
 
@@ -28,7 +28,7 @@
 
         <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
           <a href="#process">How it works</a>
-          <a href="#services">Solutions</a>
+          <a href="#solutions">Solutions</a>
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
           <a class="button quote-button" href="#quote">
@@ -86,10 +86,10 @@
         </div>
       </section>
 
-      <section class="section services-section" id="services">
+      <section class="section services-section" id="solutions">
         <div class="container">
           <div class="section-heading centered reveal">
-            <h2>Our Sourcing</h2>
+            <h2>Our Solutions</h2>
             <p>Comprehensive sourcing across materials, people, services, and project support.</p>
           </div>
 
@@ -217,47 +217,61 @@
         </div>
       </section>
 
-      <section class="section quote-section" id="quote">
-        <div class="container quote-layout">
-          <div class="quote-intro reveal">
-            <p class="eyebrow"><span></span> Request a quote</p>
-            <h2>Tell us what you need to find.</h2>
-            <p>Share the basics and we will follow up within one business day to clarify the request and begin identifying the right options.</p>
-
-            <div class="contact-details" id="contact">
-              <a href="mailto:tyler@squibnet.ca">
-                <span class="contact-icon">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3V6Zm1 1 8 6 8-6" /></svg>
-                </span>
-                <span><small>Email</small><strong>tyler@squibnet.ca</strong></span>
-              </a>
-              <a href="tel:+16474635885">
-                <span class="contact-icon">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3 4 5c-1 1 0 6 4 10s9 5 10 4l3-3-5-4-2 2c-2-1-3-2-4-4l2-2-5-5Z" /></svg>
-                </span>
-                <span><small>Phone</small><strong>647-463-5885</strong></span>
-              </a>
-              <div>
-                <span class="contact-icon">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></svg>
-                </span>
-                <span><small>Based in</small><strong>Toronto, Ontario</strong></span>
-              </div>
-            </div>
+      <section class="section contact-section" id="contact">
+        <div class="container">
+          <div class="section-heading centered reveal">
+            <h2>Contact</h2>
           </div>
 
-          <form class="quote-form reveal reveal-delay" id="quote-form">
+          <div class="contact-grid">
+            <article class="contact-card reveal">
+              <div class="contact-heading-row">
+                <span>Email</span>
+                <div class="contact-actions">
+                  <a class="contact-action contact-link" href="mailto:tyler@squibnet.ca" aria-label="Email SquibNET">
+                    <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6M3 10h10" /></svg>
+                  </a>
+                  <button class="contact-action copy-button" type="button" data-copy="tyler@squibnet.ca" aria-label="Copy email address">
+                    <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 6V4h9v9h-2M4 7h9v9H4V7Z" /></svg>
+                  </button>
+                </div>
+              </div>
+              <strong>tyler@squibnet.ca</strong>
+            </article>
+            <article class="contact-card reveal reveal-delay">
+              <div class="contact-heading-row">
+                <span>Phone</span>
+                <div class="contact-actions">
+                  <a class="contact-action contact-link" href="tel:+16474635885" aria-label="Call SquibNET">
+                    <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6M3 10h10" /></svg>
+                  </a>
+                  <button class="contact-action copy-button" type="button" data-copy="647-463-5885" aria-label="Copy phone number">
+                    <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 6V4h9v9h-2M4 7h9v9H4V7Z" /></svg>
+                  </button>
+                </div>
+              </div>
+              <strong>647-463-5885</strong>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section quote-section" id="quote">
+        <div class="container quote-container">
+            <div class="section-heading centered quote-heading reveal">
+              <h2>Request a Quote</h2>
+            </div>
+
+            <form class="quote-form reveal reveal-delay" id="quote-form">
             <div class="form-header">
               <div>
-                <span class="form-step">Quick project brief</span>
                 <h3>Let’s find the right fit.</h3>
               </div>
-              <span class="response-time"><i></i> Reply within 24 hours</span>
             </div>
 
             <div class="form-grid">
               <label>
-                Your name <span>*</span>
+                Your name
                 <input type="text" name="name" autocomplete="name" placeholder="Full name" required />
               </label>
               <label>
@@ -265,7 +279,7 @@
                 <input type="text" name="company" autocomplete="organization" placeholder="Company name" />
               </label>
               <label>
-                Email address <span>*</span>
+                Email address
                 <input type="email" name="email" autocomplete="email" placeholder="you@company.com" required />
               </label>
               <label>
@@ -273,88 +287,48 @@
                 <input type="tel" name="phone" autocomplete="tel" placeholder="(000) 000-0000" />
               </label>
               <label class="full-width">
-                What can we source for you? <span>*</span>
-                <select name="category" required>
-                  <option value="" selected disabled>Select a category</option>
-                  <option>Materials & supplies</option>
-                  <option>Equipment & infrastructure</option>
-                  <option>Distribution & logistics</option>
-                  <option>Sales & marketing support</option>
-                  <option>Digital & creative support</option>
-                  <option>Operational & business support</option>
-                  <option>Specialists & contractors</option>
-                  <option>Labour & project teams</option>
-                  <option>Custom / other request</option>
-                </select>
+                What can we source for you?
+                <input type="text" name="category" placeholder="Materials, labour, distribution, services, or another need" required />
               </label>
               <label>
                 Ideal timeline
-                <select name="timeline">
-                  <option>As soon as possible</option>
-                  <option>Within 2–4 weeks</option>
-                  <option>Within 1–3 months</option>
-                  <option>Planning ahead</option>
-                </select>
+                <input type="text" name="timeline" placeholder="For example, as soon as possible or within one month" />
               </label>
               <label>
                 Estimated budget
-                <select name="budget">
-                  <option>Not sure yet</option>
-                  <option>Under $5,000</option>
-                  <option>$5,000–$25,000</option>
-                  <option>$25,000–$100,000</option>
-                  <option>$100,000+</option>
-                </select>
+                <input type="text" name="budget" placeholder="Enter a range or leave blank if you are unsure" />
               </label>
               <label class="full-width">
-                Project details <span>*</span>
+                Project details
                 <textarea name="details" rows="5" placeholder="Tell us what you need, the intended use, quantities, location, and any important requirements." required></textarea>
               </label>
             </div>
 
-            <label class="consent">
-              <input type="checkbox" name="consent" required />
-              <span>I agree to be contacted by SquibNET about this request.</span>
-            </label>
-
-            <button class="button button-primary form-submit" type="submit">
-              Send my request
+            <button class="button quote-button form-submit" type="submit">
+              Send Request
               <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6M3 10h10" /></svg>
             </button>
-            <p class="form-note">Your details are only used to respond to your request.</p>
             <div class="form-status" aria-live="polite"></div>
-          </form>
+            </form>
         </div>
       </section>
 
-      <section class="final-cta">
-        <div class="container final-cta-content reveal">
-          <div>
-            <p class="eyebrow eyebrow-light"><span></span> Have a project in mind?</p>
-            <h2>Make sourcing the easiest part.</h2>
-          </div>
-          <a class="button button-white" href="#quote">
-            Request a free quote
-            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6M3 10h10" /></svg>
-          </a>
-        </div>
-      </section>
     </main>
 
     <footer class="site-footer">
       <div class="container">
         <div class="footer-main">
           <div>
-            <a class="brand footer-brand" href="#home" aria-label="SquibNET home">
+            <a class="brand footer-brand" href="#top" aria-label="SquibNET home">
               <span>Squib<span>NET</span></span>
             </a>
-            <p>Solution sourcing, simplified.<br />Serving businesses across Canada.</p>
+            <p>Solution sourcing, simplified.</p>
           </div>
           <div class="footer-links">
             <div>
               <strong>Explore</strong>
-              <a href="#services">Solutions</a>
               <a href="#process">How it works</a>
+              <a href="#solutions">Solutions</a>
               <a href="#about">About us</a>
             </div>
             <div>
