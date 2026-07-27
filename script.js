@@ -129,7 +129,7 @@ quoteForm?.addEventListener("submit", async (event) => {
     }
 
     quoteForm.reset();
-    formStatus.textContent = "Thank you. Your request has been sent to SquibNET.";
+    formStatus.textContent = "Form submitted.";
     formStatus.classList.add("show");
   } catch {
     formStatus.textContent =

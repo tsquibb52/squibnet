@@ -740,14 +740,11 @@ svg {
 
 .form-status {
   display: none;
-  padding: 12px;
   margin-top: 16px;
-  color: #a9efd3;
-  background: #0d2a24;
-  border: 1px solid #24594a;
-  border-radius: 6px;
-  font-size: 12px;
+  color: var(--muted);
+  font-size: 14px;
   line-height: 1.5;
+  text-align: center;
 }
 
 .form-status.show {
@@ -756,8 +753,6 @@ svg {
 
 .form-status.error {
   color: #f3b4b4;
-  background: #2a1116;
-  border-color: #64303a;
 }
 
 /* Footer */
